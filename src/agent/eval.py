@@ -1,5 +1,5 @@
-# Import the same retrieval and answer function used by the application.
-from .main import answer_question, retriever
+# Import the same orchestrated answer function used by the application.
+from .main import answer_question
 
 # Define representative questions and words expected in grounded answers.
 test_cases = [
@@ -15,11 +15,8 @@ test_cases = [
 # Run each evaluation case independently so one result is easy to inspect.
 for test in test_cases:
 
-    # Retrieve evidence once so the test measures the answer using known documents.
-    reviews = retriever.invoke(test["question"])
-
-    # Generate an answer using the same function as the production app.
-    result = answer_question(test["question"], reviews)
+    # Generate an answer using the same orchestrator as the production app.
+    result = answer_question(test["question"])
 
     # Print the question and generated answer for manual review.
     print(f"Q: {test['question']}\nA: {result}\n")

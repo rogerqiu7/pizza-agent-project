@@ -1,19 +1,15 @@
-"""OpenAI agent configuration."""
+"""OpenAI model configuration."""
 
-from langchain.agents import create_agent
+import os
+
 from dotenv import load_dotenv
+from langchain_openai import ChatOpenAI
 
 
 load_dotenv()
 
 
-def get_weather(city: str) -> str:
-    """Get weather for a given city."""
-    return f"It's always sunny in {city}!"
-
-
-agent = create_agent(
-    model="gpt-5.4-nano",
-    tools=[get_weather],
-    system_prompt="You are a helpful assistant",
+# Expose a chat model so the application can create agents with task-specific prompts.
+model = ChatOpenAI(
+    model=os.getenv("OPENAI_MODEL", "gpt-5.4-nano"),
 )
