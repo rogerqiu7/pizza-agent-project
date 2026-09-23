@@ -97,7 +97,7 @@ def answer_question(question: str) -> str:
 
 def main() -> None:
     """Run one sample question when the `agent` command is executed."""
-    question = "my order never came"
+    question = "hows the crust"
     print(answer_question(question))
 
 
